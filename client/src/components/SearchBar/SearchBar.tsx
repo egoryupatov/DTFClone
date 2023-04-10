@@ -3,10 +3,14 @@ import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useOutsideClick } from "@/app/hooks/useOutsideClick";
 import SearchResults from "@/components/SearchBar/SearchResults";
 import RecentSearches from "@/components/SearchBar/RecentSearches";
+import axios from "axios";
+import { SERVER_URL } from "@/constants/const";
 
 export default function SearchBar() {
+  const inputRef = useRef<HTMLInputElement>(null);
   const searchResultsRef = useRef<HTMLDivElement>(null);
   const recentSearchesRef = useRef<HTMLDivElement>(null);
+  const [searchResults, setSearchResults] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isSearchResultsDisplayed, setIsSearchResultsDisplayed] =
@@ -18,24 +22,21 @@ export default function SearchBar() {
   useOutsideClick(searchResultsRef, setIsSearchResultsDisplayed);
 
   useEffect(() => {
-    if (searchQuery.length > 2) {
+    const getSearchResults = async () => {
+      const response = await axios.get(
+        `${SERVER_URL}/posts/search/${searchQuery}`
+      );
+
+      setSearchResults(response.data);
       setIsSearchResultsDisplayed(true);
+    };
+
+    if (searchQuery) {
+      getSearchResults();
     } else {
       setIsSearchResultsDisplayed(false);
     }
-
-    if (searchQuery.length > 0) {
-      setIsRecentSearchesDisplayed(false);
-    }
   }, [searchQuery]);
-
-  const handleFocus = (event: any) => {
-    if (event.target.value === "") {
-      setIsRecentSearchesDisplayed(true);
-    } else {
-      setIsRecentSearchesDisplayed(false);
-    }
-  };
 
   return (
     <div className="searchBar">
@@ -43,23 +44,25 @@ export default function SearchBar() {
         <Image src={"/search.svg"} alt={"search"} width={"20"} height={"20"} />
         <input
           type="text"
+          ref={inputRef}
           placeholder="Поиск"
-          onFocus={handleFocus}
           className="searchBar_field_input"
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            setSearchQuery(event.target.value)
-          }
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            setSearchQuery(event.target.value);
+          }}
         ></input>
       </div>
 
-
       {isSearchResultsDisplayed ? (
-        <SearchResults searchResultsRef={searchResultsRef} />
+        <SearchResults
+          searchResultsRef={searchResultsRef}
+          searchResults={searchResults}
+        />
       ) : null}
 
-      {isRecentSearchesDisplayed ? (
+      {isRecentSearchesDisplayed && (
         <RecentSearches recentSearchesRef={recentSearchesRef} />
-      ) : null}
+      )}
     </div>
   );
 }
