@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useOutsideClick } from "@/app/hooks/useOutsideClick";
@@ -47,6 +48,7 @@ export default function SearchBar() {
           ref={inputRef}
           placeholder="Поиск"
           className="searchBar_field_input"
+          value={searchQuery}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             setSearchQuery(event.target.value);
           }}
@@ -57,6 +59,8 @@ export default function SearchBar() {
         <SearchResults
           searchResultsRef={searchResultsRef}
           searchResults={searchResults}
+          setIsSearchResultsDisplayed={setIsSearchResultsDisplayed}
+          setSearchQuery={setSearchQuery}
         />
       ) : null}
 

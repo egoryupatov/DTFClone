@@ -6,6 +6,7 @@ import { ICategory } from "@/types/category.type";
 
 export default function Category(props: ICategory) {
   const pathname = usePathname();
+
   return (
     <Link
       href={`/${props.alias}`}

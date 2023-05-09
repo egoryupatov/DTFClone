@@ -24,6 +24,12 @@ export default function Sidebar() {
       alias: "feed",
       image: "/feed.svg",
     },
+    {
+      id: 4,
+      name: "Закладки",
+      alias: "bookmarks",
+      image: "/fire.svg",
+    },
   ];
 
   const dispatch = useAppDispatch();

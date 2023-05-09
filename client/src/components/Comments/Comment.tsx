@@ -26,9 +26,10 @@ export default function Comment(props: CommentProps) {
         setAreNumberOfAnswersDisplayed((prevState) => !prevState);
       })
       .catch((error) => {
-        console.error(error); //переписать на стейт
+        console.error(error);
       });
   };
+
   return (
     <>
       <div className="comment">
