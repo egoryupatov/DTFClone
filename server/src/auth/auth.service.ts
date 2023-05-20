@@ -10,6 +10,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  ///
+
   async validateUser(
     login: string,
     pass: string,
@@ -22,6 +24,8 @@ export class AuthService {
     }
     return null;
   }
+
+  ///
 
   async login(user: User) {
     const payload = { username: user.login, sub: user.id };

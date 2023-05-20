@@ -1,8 +1,8 @@
 Hi! This is one of the apps I developed as a pet project to acquire new skills and strengthen the ones I already have.
 
-## App requirements
+## App description
 
-Full-fledged blog app (frontend + backend).
+Full-fledged blog app (frontend + backend + database). A clone of really existing blog.
 
 ## App features
 
@@ -46,25 +46,15 @@ First, you'll need to create a MySQL database:
 
 The second step is to start the server:
 
-1) Clone the server repository to your local machine https://github.com/egoryupatov/blog-server-nest
-2) Navigate into the project directory
-3) Install the dependencies using one of the following commands: `npm install` or `yarn install`
-4) Start the server using one of the following commands: `npm start` or `yarn start`
+1) Navigate into the server directory
+2) Install the dependencies using one of the following commands: `npm install` or `yarn install`
+3) Start the server using one of the following commands: `npm start` or `yarn start`
 
 The final step is to start the app itself:
 
-1) Clone the app repository to your local machine https://github.com/egoryupatov/blog-client-next
-2) Navigate into the project directory
-3) Install the dependencies using one of the following commands: `npm install` or `yarn install`
-4) Start the app using one of the following commands: `npm run dev`
-
-## Where to see the deployed version of the app
-
-You can see the deployed version of the app here - https://blogger-app-19qn.onrender.com/
-
-**Pay attention!** This is a bit outdated build and I update it quite rare, plus there is some delay in uploading blog posts.
-
-So, it's better to clone the app and launch it on your local machine.
+1) Navigate into the app directory
+2) Install the dependencies using one of the following commands: `npm install` or `yarn install`
+3) Start the app using one of the following commands: `npm run dev`
 
 ## Authorization details
 
